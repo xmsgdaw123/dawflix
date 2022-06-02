@@ -21,7 +21,7 @@ body {
   background: rgba(18, 19, 33, 0.8);
   border-bottom: 1px solid rgb(29, 31, 49);
   backdrop-filter: saturate(180%) blur(5px);
-  box-shadow: rgb(0 0 0 / 10%) 0px -1px 0px 0px inset
+  box-shadow: rgb(0, 0, 0, .1) 0px -1px 0px 0px inset
 }
 
 .movie-header {
@@ -34,7 +34,7 @@ body {
   justify-content: space-between;
   align-items: center;
   backdrop-filter: blur(5px);
-  box-shadow: rgb(0 0 0 / 10%) 0px -1px 0px 0px inset;
+  box-shadow: rgb(0, 0, 0, .1) 0px -1px 0px 0px inset;
 }
 
 .header-section {
@@ -370,7 +370,7 @@ footer {
 
 .play-movie-btn {
   background: #4855e4;
-  box-shadow: 2px 2px 10px rgb(7 8 17 / 60%);
+  box-shadow: 2px 2px 10px rgb(7, 8, 17, .6);
   color: #f2f2f2;
   width: 200px;
   padding: 15px 0;
@@ -397,7 +397,7 @@ footer {
   gap: 10px;
   border: none;
   color: #f1f1f1;
-  background: hwb(0deg 0% 100% / 29%);
+  background: rgb(0, 0, 0, .3);
   font-size: 16px;
   cursor: pointer;
   width: 200px;
