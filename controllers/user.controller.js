@@ -1,4 +1,4 @@
-import { createUser, getUserByEmail, getUserById, updateNameAndEmailById } from '../repositories/user.repository.js'
+import { createUser, getUserByEmail, getUserById, updateNameAndEmailById, updatePasswordById } from '../repositories/user.repository.js'
 import { comparePassword, hashPassword } from '../services/user.service.js'
 
 export const handleLogin = async (req, res) => {
@@ -90,15 +90,28 @@ export const updateProfile = async (req, res) => {
 
   await updateNameAndEmailById(req.session.user.id, name, email)
 
-  // const isValidPassword = await comparePassword(password, user.password)
-  // if (!isValidPassword) {
-  //   return res.status(400).send({
-  //     status: 'error',
-  //     message: 'Contraseña incorrecta'
-  //   })
-  // }
+  // si introduce un campo pero no el otro
+  if (req.body?.currentPassword && !req.body?.updatedPassword
+    || !req.body?.currentPassword && req.body?.updatedPassword) {
+    return res.status(400).send({
+      status: 'error',
+      message: 'Falta completar la contraseña actual/nueva'
+    })
+  }
 
-  // await updateUserById(req.session.user.id, name, email, password)
+
+  if (req.body?.currentPassword && req.body?.updatedPassword) {
+    const isValidPassword = await comparePassword(req.body.currentPassword, user.password)
+    if (!isValidPassword) {
+      return res.status(400).send({
+        status: 'error',
+        message: 'La contraseña actual no coincide'
+      })
+    }
+
+    const newPasswordHash = await hashPassword(req.body.updatedPassword)
+    await updatePasswordById(req.session.user.id, newPasswordHash)
+  }
 
   const updatedUser = await getUserById(req.session.user.id)
   req.session.user = updatedUser

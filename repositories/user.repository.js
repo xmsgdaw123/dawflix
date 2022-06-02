@@ -18,6 +18,10 @@ export const createUser = async (name, email, passwordHash) => {
   return makeQuery(`INSERT INTO users (username, email, password, role, is_subscriber) VALUES (?, ?, ?, 'user', 0)`, [name, email, passwordHash])
 }
 
-export const updateNameAndEmailById = async (id, name, email) => {
-  return await makeQuery(`UPDATE users SET username = ?, email = ? WHERE id = ?`, [name, email, id])
+export const updateNameAndEmailById = (id, name, email) => {
+  return makeQuery(`UPDATE users SET username = ?, email = ? WHERE id = ?`, [name, email, id])
+}
+
+export const updatePasswordById = (id, hash) => {
+  return makeQuery(`UPDATE users SET password = ? WHERE id = ?`, [id, hash])
 }
