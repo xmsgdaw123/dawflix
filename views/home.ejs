@@ -1,0 +1,44 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Dawflix</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <%- include('header.ejs') -%>
+    <main>
+      <div class="container main-home-container">
+        <h1 class="info-title">Todas las películas y series que desees, y mucho más</h1>
+        <h2 class="info-subtitle">Empieza ya a ver tus series favoritas o peliculas favoritas</h2>
+      </div>
+      <div class="container second-index-container vertical">
+        <div class="featured-container">
+          <h2 class="featured-container-title">Películas más populares</h2>
+          <div class="featured-wrapper">
+            <% for (const movie of featuredMovies) {%>
+              <div class="featured-card">
+                <a href="/movies/<%- movie.id %>">
+                  <img class="featured-card-img" src="./cdn/movies/<%- movie.id %>/thumbnail.jpg" alt="<%- movie.title %>">
+                  <div class="featured-card-title"><%- movie.title %></div>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="featured-container">
+          <h2 class="featured-container-title">Series más populares</h2>
+          <div>
+            <div>
+              <a href="#">
+                <div>Interstellar</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('footer.ejs') -%>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<header class="<%- locals.movie ? 'movie-header' : 'main-header' %>">
+  <div class="header-section">
+    <a href="/" class="header-logo">Dawflix</a>
+    <nav class="header-nav">
+      <div class="nav-item"><a href="#">Series</a></div>
+      <div class="nav-item"><a href="#">Peliculas</a></div>
+      <div class="nav-item"><a href="#">Mi lista</a></div>
+    </nav>
+  </div>
+  <div class="header-section">
+    <% if (user) { %>
+      
+      <a href="/api/auth/logout" class="logout-btn">Cerrar sesión</a>
+    <% } else{ %>
+      <a href="/login" class="login-btn">Iniciar sesión</a>
+   <% } %>
+    <!-- <div class="main-nav">
+      <img src="./img/search.svg" alt="Icono de buscar" />
+      <img src="./img/profile.svg" alt="Icono de perfil" />
+    </div> -->
+  </div>
+</header>

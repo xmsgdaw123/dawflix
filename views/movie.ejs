@@ -1,0 +1,34 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- movie.title %> | Dawflix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../js/main.js"></script>
+  </head>
+  <body>
+    <script>window.movie = <%- JSON.stringify(movie) %></script>
+    <div class="movie-background" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(20, 20, 20, 0.2) 70%, rgba(20, 20, 20, 1) 100%), url(/cdn/movies/<%- movie.id %>/image.jpg)"></div>
+    <%- include('header.ejs') -%>
+    <main>
+      <div class="container main-movie-container">
+        <div class="category-wrapper"><div class="category"><%- movie.category %></div></div>
+        <h1 class="movie-title"><%- movie.title %></h1>
+        <p class="movie-resume"><%- movie.resume %></p>
+        <div class="movie-buttons">
+          <button class="play-movie-btn"><i class="fa-solid fa-play"></i> Reproducir</button>
+          <button id="save-movie-btn" class="save-movie-btn"><i class="fa-solid fa-circle-plus"></i> Guardar película</button>
+        </div>
+      </div>
+      <div class="container second-index-container vertical">
+        
+      </div>
+    </main>
+    <%- include('footer.ejs') -%>
+  </body>
+</html>

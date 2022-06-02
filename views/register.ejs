@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regístrate | Dawflix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="./js/main.js"></script>
+</head>
+
+<body>
+  <%- include('header.ejs') -%>
+    <div class="container login-container">
+      <h1 class="container-title">Registrarse</h1>
+      <form id="register-form" class="login-wrapper">
+        <div class="input-wrapper">
+          <div class="input-title">Nombre</div>
+          <input id="auth-name" class="input-txt" type="text" placeholder="Nombre..." required>
+        </div>
+        <div class="input-wrapper">
+          <div class="input-title">Correo electrónico</div>
+          <input id="auth-email" class="input-txt" type="email" placeholder="Correo electrónico..." required>
+        </div>
+        <div class="input-wrapper">
+          <div class="input-title">Contraseña</div>
+          <input id="auth-password" class="input-txt" type="password" placeholder="Contraseña..." required>
+        </div>
+        <div class="input-wrapper">
+          <div class="input-title">Repetir contraseña</div>
+          <input id="auth-password-repeated" class="input-txt" type="password" placeholder="Contraseña..." required>
+        </div>
+        <button type="submit" class="login-btn">Crear cuenta</button>
+        <a class="login-link" href="/register">O bien inicia sesión</a>
+      </form>
+    </div>
+    <%- include('footer.ejs') -%>
+</body>
+
+</html>

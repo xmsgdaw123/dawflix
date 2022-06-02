@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dawflix - Películas y series al mejor precio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <%- include('header.ejs') -%>
+    <div class="container main-index-container">
+      <div class="container-part">
+        <h1 class="info-title">Todas las películas y series que desees, y mucho más</h1>
+        <h2 class="info-subtitle">Empieza ya a ver tus series favoritas o peliculas favoritas</h2>
+        <button class="button-info" type="button">Suscribete ahora</button>
+      </div>
+      <div class="container-part"></div>
+    </div>
+    <div class="container second-index-container">
+      <div class="container-part">
+        <img class="info-image" src="./img/dispositivos.svg"
+          alt="Imagen de varios dispositivos para ver peliculas y series">
+      </div>
+      <div class="container-part flex-center">
+        <h1 class="info-container-title">Disfruta de Dawflix en compañía</h1>
+        <ul class="info-container-list">
+          <li class="main-info-child">Noches de series y películas con GroupWatch. Para invitar o que te inviten a
+            GroupWatch, es necesario tener una suscripción.</li>
+          <li class="main-info-child">Disfruta de Dawflix en compañía, aunque estéis en diferentes lugares.</li>
+          <li class="main-info-child">Fácil de configurar y compartir.</li>
+          <li class="main-info-child">Visualización simultánea con hasta 6 personas.</li>
+        </ul>
+      </div>
+    </div>
+    <%- include('footer.ejs') -%>
+</body>
+
+</html>
