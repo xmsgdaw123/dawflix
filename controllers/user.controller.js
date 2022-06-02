@@ -3,7 +3,6 @@ import { hashPassword } from '../services/user.service.js'
 
 
 export const handleLogin = async (req, res) => {
-  console.log(req.session.user)
   if (!req.body?.email || !req.body.password) {
     return res.status(400).send({
       status: 'error',
