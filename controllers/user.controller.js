@@ -1,5 +1,5 @@
 import { createUser, getUserByEmail, getUserById } from '../repositories/user.repository.js'
-import { hashPassword } from '../services.js/user.service.js'
+import { hashPassword } from '../services/user.service.js'
 
 
 export const handleLogin = async (req, res) => {
