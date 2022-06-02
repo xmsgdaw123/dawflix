@@ -36,7 +36,20 @@
         </div>
         <div>
           <h2 class="saved-movies-title">Series</h2>
-          <div class="text-grey">No has guardado ninguna serie todavía</div>
+          <div class="featured-wrapper">
+            <% if (locals.savedSeries) { %>
+              <% for (const serie of savedSeries) { %>
+                <div class="featured-card">
+                  <a href="../series/<%- serie.id %>">
+                    <img class="featured-card-img" src="../cdn/series/<%- serie.id %>/thumbnail.jpg" alt="<%- serie.title %>">
+                    <div class="featured-card-title"><%- serie.title %></div>
+                  </a>
+                </div>
+                <% } %>
+            <% } else { %>
+              <div class="text-grey">No has guardado ninguna serie todavía</div>
+            <%} %>
+          </div>
         </div>
       </div>
     </main>

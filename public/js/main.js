@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form')
   const saveMovie = document.getElementById('save-movie-btn')
   const removeMovie = document.getElementById('remove-movie-btn')
+  const saveSerie = document.getElementById('save-serie-btn')
+  const removeSerie = document.getElementById('remove-serie-btn')
   const updateProfileForm = document.getElementById('update-profile-form')
   const inputCurrentPassword = document.getElementById('current-password')
   const inputUpdatedPassword = document.getElementById('updated-password')
@@ -77,6 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
   removeMovie?.addEventListener('click', async () => {
     const movieId = window.movie.id
     const res = await fetchAPI(`/movies/${movieId}/remove`, 'POST')
+    if (res.status === 'error') return errorNotification(res.message)
+    location.reload()
+  })
+
+  saveSerie?.addEventListener('click', async () => {
+    const serieId = window.serie.id
+    const res = await fetchAPI(`/series/${serieId}/save`, 'POST')
+    if (res.status === 'error') return errorNotification(res.message)
+    location.reload()
+  })
+
+  removeSerie?.addEventListener('click', async () => {
+    const serieId = window.serie.id
+    const res = await fetchAPI(`/series/${serieId}/remove`, 'POST')
     if (res.status === 'error') return errorNotification(res.message)
     location.reload()
   })

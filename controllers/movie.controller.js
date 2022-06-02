@@ -50,10 +50,3 @@ export const removeSavedMovieById = async (req, res) => {
 
   res.send({ status: 'success' })
 }
-
-export const savedMoviesPage = async (req, res) => {
-  const savedMovies = await moviesRepository.getSavedMoviesDetailed(req.session.user.id)
-  res.render('saved-list.ejs', {
-    savedMovies
-  })
-}

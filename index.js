@@ -7,8 +7,8 @@ import bodyParser from 'body-parser'
 import cookieSession from 'cookie-session'
 import routes from './routes/index.js'
 import authorizedMiddleware from './middlewares/authorized.js'
-import { getFeaturedMovies } from './repositories/movie.repository.js'
-import { getFeaturedSeries } from './repositories/serie.repository.js'
+import moviesRepository from './repositories/movie.repository.js'
+import seriesRepository from './repositories/serie.repository.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -36,11 +36,20 @@ app.set('view engine', 'html')
 app.engine('html', renderFile)
 
 app.get('/', authorizedMiddleware, async (req, res) => {
-  const featuredMovies = await getFeaturedMovies()
-  const featuredSeries = await getFeaturedSeries()
+  const featuredMovies = await moviesRepository.getFeaturedMovies()
+  const featuredSeries = await seriesRepository.getFeaturedSeries()
   res.render('home.ejs', {
     featuredMovies,
     featuredSeries
+  })
+})
+
+app.get('/saved', authorizedMiddleware, async (req, res) => {
+  const savedMovies = await moviesRepository.getSavedMoviesDetailed(req.session.user.id)
+  const savedSeries = await seriesRepository.getSavedSeriesDetailed(req.session.user.id)
+  res.render('saved-list.ejs', {
+    savedMovies,
+    savedSeries,
   })
 })
 
@@ -49,6 +58,7 @@ app.get('/register', (req, res) => res.render('register.ejs'))
 app.get('/profile', (req, res) => res.render('profile.ejs'))
 
 app.use('/movies', routes.movies)
+app.use('/series', routes.series)
 app.use('/api/auth', routes.auth)
 app.use('/api/user', routes.user)
 

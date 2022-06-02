@@ -30,12 +30,15 @@
         </div>
         <div class="featured-container">
           <h2 class="featured-container-title">Series más populares</h2>
-          <div>
-            <div>
-              <a href="#">
-                <div>Interstellar</div>
-              </a>
-            </div>
+          <div class="featured-wrapper">
+            <% for (const serie of featuredSeries) {%>
+              <div class="featured-card">
+                <a href="/series/<%- serie.id %>">
+                  <img class="featured-card-img" src="./cdn/series/<%- serie.id %>/thumbnail.jpg" alt="<%- serie.title %>">
+                  <div class="featured-card-title"><%- serie.title %></div>
+                </a>
+              </div>
+            <% } %>
           </div>
         </div>
       </div>
