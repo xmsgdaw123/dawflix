@@ -35,6 +35,13 @@ export const getSavedMovies = async userId => {
   return data
 }
 
+export const getSavedMoviesDetailed = async userId => {
+  const { error, data } = await makeQuery('SELECT movies.id, movies.title, movies.director, movies.resume, movies.release_date, movies.is_public, categories.name AS category, saved_movies.saved_at FROM saved_movies INNER JOIN movies ON movies.id = saved_movies.movie INNER JOIN categories ON movies.category = categories.id WHERE saved_movies.user = ?', [userId])
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
 export const removeSavedMovie = async (userId, movieId) => {
   const { error, data } = await makeQuery('DELETE FROM saved_movies WHERE user = ? AND movie = ?', [userId, movieId])
   if (error) return null
@@ -48,5 +55,6 @@ export default {
   getSavedMovie,
   saveMovie,
   getSavedMovies,
-  removeSavedMovie
+  removeSavedMovie,
+  getSavedMoviesDetailed
 }

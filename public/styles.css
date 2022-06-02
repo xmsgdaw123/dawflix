@@ -377,3 +377,12 @@ footer {
   width: 200px;
   border-radius: 4px;;
 }
+
+.saved-movies-title {
+  color: #fafafa;
+  margin-bottom: 10px;
+}
+
+.text-grey {
+  color: #b3b3b3;
+}
