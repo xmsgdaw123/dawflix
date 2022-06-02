@@ -12,7 +12,7 @@
     <script src="../js/main.js"></script>
   </head>
   <body>
-    <script>window.movie = <%- JSON.stringify(movie) %></script>
+    <script>window.movie = <%- JSON.stringify(movie) %>;window.savedMovies = <%- JSON.stringify(savedMovies) %></script>
     <div class="movie-background" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(20, 20, 20, 0.2) 70%, rgba(20, 20, 20, 1) 100%), url(/cdn/movies/<%- movie.id %>/image.jpg)"></div>
     <%- include('header.ejs') -%>
     <main>
@@ -22,7 +22,11 @@
         <p class="movie-resume"><%- movie.resume %></p>
         <div class="movie-buttons">
           <button class="play-movie-btn"><i class="fa-solid fa-play"></i> Reproducir</button>
-          <button id="save-movie-btn" class="save-movie-btn"><i class="fa-solid fa-circle-plus"></i> Guardar película</button>
+          <% if (locals.savedMovies?.find(saved => saved.movie === movie.id)) { %>
+            <button id="remove-movie-btn" class="save-movie-btn"><i class="fa-solid fa-circle-minus"></i> Quitar película</button>
+          <% } else { %>
+            <button id="save-movie-btn" class="save-movie-btn"><i class="fa-solid fa-circle-plus"></i> Guardar película</button>
+          <% } %>
         </div>
       </div>
       <div class="container second-index-container vertical">

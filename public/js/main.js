@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('login-form')
   const registerForm = document.getElementById('register-form')
   const saveMovie = document.getElementById('save-movie-btn')
+  const removeMovie = document.getElementById('remove-movie-btn')
 
   loginForm?.addEventListener('submit', async evt => {
     evt.preventDefault()
@@ -63,9 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
     location.href = '/'
   })
 
-  saveMovie?.addEventListener('click', () => {
+  saveMovie?.addEventListener('click', async () => {
     const movieId = window.movie.id
-    const res = await fetchAPI(`/movies/${movieId}/save`, 'POST', body)
+    const res = await fetchAPI(`/movies/${movieId}/save`, 'POST')
+    if (res.status === 'error') return errorNotification(res.message)
+    location.reload()
+  })
+
+  removeMovie?.addEventListener('click', async () => {
+    const movieId = window.movie.id
+    const res = await fetchAPI(`/movies/${movieId}/remove`, 'POST')
     if (res.status === 'error') return errorNotification(res.message)
     location.reload()
   })

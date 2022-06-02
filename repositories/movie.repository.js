@@ -14,7 +14,39 @@ export const getMovieById = async id => {
   return data[0]
 }
 
+export const getSavedMovie = async (userId, movieId) => {
+  const { error, data } = await makeQuery('SELECT * FROM saved_movies WHERE user = ? AND movie = ?', [userId, movieId])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]
+}
+
+export const saveMovie = async (userId, movieId, savedAt) => {
+  const { error, data } = await makeQuery('INSERT INTO saved_movies (user, movie, saved_at) VALUES (?, ?, ?)', [userId, movieId, savedAt])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]
+}
+
+export const getSavedMovies = async userId => {
+  const { error, data } = await makeQuery('SELECT * FROM saved_movies WHERE user = ?', [userId])
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
+export const removeSavedMovie = async (userId, movieId) => {
+  const { error, data } = await makeQuery('DELETE FROM saved_movies WHERE user = ? AND movie = ?', [userId, movieId])
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
 export default {
   getFeaturedMovies,
-  getMovieById
+  getMovieById,
+  getSavedMovie,
+  saveMovie,
+  getSavedMovies,
+  removeSavedMovie
 }
