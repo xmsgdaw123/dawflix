@@ -78,7 +78,8 @@ header, .container, footer {
 
 .main-index-container,
 .main-home-container,
-.main-movie-container {
+.main-movie-container,
+.main-profile-container {
   margin-top: 300px;
   margin-bottom: 200px;
 }
@@ -86,6 +87,14 @@ header, .container, footer {
 .main-home-container {
   display: flex;
   flex-direction: column;
+}
+
+.main-profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px!important;
 }
 
 .login-container {
@@ -253,9 +262,21 @@ footer {
   margin-bottom: 200px;
 }
 
-.logout-btn {
+.header-user-link {
   color: #afafaf;
   text-decoration: none;
+}
+
+.header-user-link:not(:last-child) {
+  margin-right: 10px;
+}
+
+.header-user-link:hover {
+  color: #e4e4e4;
+}
+
+.logout:hover {
+  color: #f27171!important;
 }
 
 .vertical {
@@ -385,4 +406,10 @@ footer {
 
 .text-grey {
   color: #b3b3b3;
+}
+
+.plan-txt {
+  color: #bcbcbc;
+  font-size: 20px;
+  margin-bottom: 20px;
 }

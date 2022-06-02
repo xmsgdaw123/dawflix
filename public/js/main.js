@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const registerForm = document.getElementById('register-form')
   const saveMovie = document.getElementById('save-movie-btn')
   const removeMovie = document.getElementById('remove-movie-btn')
+  const updateProfileForm = document.getElementById('update-profile-form')
+  const inputCurrentPassword = document.getElementById('current-password')
+  const inputUpdatedPassword = document.getElementById('updated-password')
 
   loginForm?.addEventListener('submit', async evt => {
     evt.preventDefault()
@@ -75,6 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieId = window.movie.id
     const res = await fetchAPI(`/movies/${movieId}/remove`, 'POST')
     if (res.status === 'error') return errorNotification(res.message)
+    location.reload()
+  })
+
+  updateProfileForm?.addEventListener('submit', async evt => {
+    evt.preventDefault()
+    const name = authName.value
+    const email = authEmail.value
+    const currentPassword = inputCurrentPassword.value
+    const updatedPassword = inputUpdatedPassword.value
+    
+    const body = JSON.stringify({ name, email, currentPassword, updatedPassword })
+
+    const res = await fetchAPI('/api/user/update-profile', 'POST', body)
+    if (res.status === 'error') return errorNotification(res.message)
+    console.log(res)
     location.reload()
   })
 })

@@ -46,9 +46,11 @@ app.get('/', authorizedMiddleware, async (req, res) => {
 
 app.get('/login', (req, res) => res.render('login.ejs'))
 app.get('/register', (req, res) => res.render('register.ejs'))
+app.get('/profile', (req, res) => res.render('profile.ejs'))
 
 app.use('/movies', routes.movies)
 app.use('/api/auth', routes.auth)
+app.use('/api/user', routes.user)
 
 const port = process.env.SERVER_PORT
 app.listen(port)

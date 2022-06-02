@@ -15,5 +15,9 @@ export const getUserByEmail = async email => {
 }
 
 export const createUser = async (name, email, passwordHash) => {
-  return makeQuery(`INSERT INTO users(username, email, password, role, is_subscriber) VALUES (?, ?, ?, 'user', 0)`, [name, email, passwordHash])
+  return makeQuery(`INSERT INTO users (username, email, password, role, is_subscriber) VALUES (?, ?, ?, 'user', 0)`, [name, email, passwordHash])
+}
+
+export const updateNameAndEmailById = async (id, name, email) => {
+  return await makeQuery(`UPDATE users SET username = ?, email = ? WHERE id = ?`, [name, email, id])
 }

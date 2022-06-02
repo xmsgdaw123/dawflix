@@ -1,0 +1,42 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil | Dawflix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/main.js"></script>
+  </head>
+  <body>
+    <%- include('header.ejs') -%>
+    <main>
+      <div class="container main-profile-container">
+        <h1 class="info-title">Mi perfil</h1>
+        <div class="plan-txt"><%- user.is_subscriber ? 'Plan premium' : 'Plan gratuito' %></div>
+        <form id="update-profile-form" class="login-wrapper">
+          <div class="input-wrapper">
+            <div class="input-title">Nombre</div>
+            <input id="auth-name" class="input-txt" type="text" placeholder="Nombre..." value="<%- user.username %>" required>
+          </div>
+          <div class="input-wrapper">
+            <div class="input-title">Correo electrónico</div>
+            <input id="auth-email" class="input-txt" type="email" placeholder="Correo electrónico..." value="<%- user.email %>" required>
+          </div>
+          <div class="input-wrapper">
+            <div class="input-title">Contraseña actual</div>
+            <input id="current-password" class="input-txt" type="password" placeholder="Contraseña...">
+          </div>
+          <div class="input-wrapper">
+            <div class="input-title">Contraseña nueva</div>
+            <input id="updated-password" class="input-txt" type="password" placeholder="Contraseña...">
+          </div>
+          <button type="submit" class="login-btn">Actualizar</button>
+        </form>
+      </div>
+    </main>
+    <%- include('footer.ejs') -%>
+  </body>
+</html>

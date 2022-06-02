@@ -9,8 +9,8 @@
   </div>
   <div class="header-section">
     <% if (user) { %>
-      
-      <a href="/api/auth/logout" class="logout-btn">Cerrar sesión</a>
+      <a href="/profile" class="header-user-link">Mi perfil</a>
+      <a href="/api/auth/logout" class="header-user-link logout">Cerrar sesión</a>
     <% } else{ %>
       <a href="/login" class="login-btn">Iniciar sesión</a>
    <% } %>
