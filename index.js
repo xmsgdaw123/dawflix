@@ -7,6 +7,7 @@ import bodyParser from 'body-parser'
 import cookieSession from 'cookie-session'
 import routes from './routes/index.js'
 import authorizedMiddleware from './middlewares/authorized.js'
+import adminMiddleware from './middlewares/admin.js'
 import moviesRepository from './repositories/movie.repository.js'
 import seriesRepository from './repositories/serie.repository.js'
 
@@ -50,6 +51,16 @@ app.get('/saved', authorizedMiddleware, async (req, res) => {
   res.render('saved-list.ejs', {
     savedMovies,
     savedSeries,
+  })
+})
+
+app.get('/admin', adminMiddleware, async (req, res) => {
+  const movies = await moviesRepository.getAllMovies()
+  const series = await seriesRepository.getAllSeries()
+  console.log({movies, series})
+  res.render('admin.ejs', {
+    movies,
+    series,
   })
 })
 

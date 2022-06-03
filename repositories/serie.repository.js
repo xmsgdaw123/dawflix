@@ -50,6 +50,13 @@ export const removeSavedSerie = async (userId, serieId) => {
   return data
 }
 
+export const getAllSeries = async () => {
+  const { error, data } = await makeQuery('SELECT * FROM series')
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
 export default {
   getFeaturedSeries,
   getSerieById,
@@ -57,5 +64,6 @@ export default {
   saveSerie,
   getSavedSeries,
   removeSavedSerie,
-  getSavedSeriesDetailed
+  getSavedSeriesDetailed,
+  getAllSeries
 }

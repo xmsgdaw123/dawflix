@@ -49,6 +49,13 @@ export const removeSavedMovie = async (userId, movieId) => {
   return data
 }
 
+export const getAllMovies = async () => {
+  const { error, data } = await makeQuery('SELECT * FROM movies')
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
 export default {
   getFeaturedMovies,
   getMovieById,
@@ -56,5 +63,6 @@ export default {
   saveMovie,
   getSavedMovies,
   removeSavedMovie,
-  getSavedMoviesDetailed
+  getSavedMoviesDetailed,
+  getAllMovies
 }

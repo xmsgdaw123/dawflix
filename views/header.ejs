@@ -9,6 +9,9 @@
   </div>
   <div class="header-section">
     <% if (user) { %>
+      <% if (locals.user.role === 'admin') { %>
+        <a href="/admin" class="header-user-link">Admin</a>
+      <% } %>
       <a href="/profile" class="header-user-link">Mi perfil</a>
       <a href="/api/auth/logout" class="header-user-link logout">Cerrar sesión</a>
     <% } else{ %>

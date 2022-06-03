@@ -74,6 +74,12 @@ header {
   margin-bottom: 10px;
 }
 
+.admin-section-title {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
 .info-subtitle {
   color: #adadad;
   font-weight: 500;
@@ -383,6 +389,7 @@ footer {
   align-items: center;
   gap: 10px;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .movie-buttons {
@@ -417,4 +424,41 @@ footer {
   color: #bcbcbc;
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.admin-table {
+  color: #cecece;
+  border-spacing:0;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.admin-table td {
+  background: #181b2c;
+}
+
+.admin-table td:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.admin-table td:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.resume-field {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-table > tbody tr {
+  line-height: 45px;
+  text-align: center;
+}
+
+.admin-btn {
+  cursor: pointer;
+  margin-right: 10px; 
 }
