@@ -306,13 +306,19 @@ footer {
 
 .featured-wrapper {
   display: flex;
-  flex-wrap: wrap;
   gap: 20px;
+}
+
+.movies-series-wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .featured-card {
   position: relative;
   width: 300px;
+  min-width: 250px;
   height: 150px;
   border-radius: 4px;
 }
@@ -574,4 +580,58 @@ textarea {
 .score-card:not(:last-child) {
   border-bottom: 1px solid #1f2334;
   padding-bottom: 20px;
+}
+
+.info-image {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  .second-index-container {
+    flex-direction: column;
+  }
+
+  #second-part {
+    display: none;
+  }
+}
+
+@media (max-width: 1330px) {
+  .featured-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .featured-card {
+    width: auto!important;
+    
+  }
+}
+
+@media (max-width: 1080px) {
+  .main-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 730px) {
+  .header-section:first-child {
+    flex-direction: column;
+  }
+
+  .main-header {
+    height: 130px;
+    justify-content: center;
+  }
+
+  .header-logo {
+    text-align: center;
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-col {
+    display: none;
+  }
 }
