@@ -1,0 +1,33 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Dawflix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
+  <body>
+    <%- include('header.ejs') -%>
+    <main>
+      <div class="container home-container vertical height-fit">
+        <div class="featured-container">
+          <h2 class="featured-container-title">Todas las series</h2>
+          <div class="featured-wrapper">
+            <% for (const serie of series) {%>
+              <div class="featured-card">
+                <a href="/series/<%- serie.id %>">
+                  <img class="featured-card-img" src="./cdn/series/<%- serie.id %>/thumbnail.jpg" alt="<%- serie.title %>">
+                  <div class="featured-card-title"><%- serie.title %></div>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('footer.ejs') -%>
+  </body>
+</html>

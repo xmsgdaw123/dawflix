@@ -18,7 +18,12 @@
     <%- include('header.ejs') -%>
     <main>
       <div class="container main-movie-container">
-        <div class="category-wrapper"><div class="category"><%- movie.category %></div></div>
+        <div class="category-wrapper">
+          <div class="category"><%- movie.category %></div>
+          <% if (locals.scores) { %>
+            <div class="stars-tag"><%- averageScore %> estrellas</div>
+          <% } %>
+        </div>
         <h1 class="movie-title"><%- movie.title %></h1>
         <p class="movie-resume"><%- movie.resume %></p>
         <div class="movie-buttons">
@@ -30,8 +35,36 @@
           <% } %>
         </div>
       </div>
-      <div class="container second-index-container vertical">
-        
+      <div class="container scores-container vertical score-container">
+        <h1 class="title-score">Valoraciones de la película</h1>
+        <% if (locals.scores)  { %>
+          <div class="title-score-text">Mira las valoraciones que han hecho otros usuarios sobre esta película</div>
+          <div class="scores-wrapper">
+            <% for (const score of scores) {%>
+              <div class="score-card">
+                <div><%- score.username %> (<%- score.score %> estrellas)</div>
+                <div class="score-comment"><%- score.comment  %></div>
+              </div>
+            <% } %>
+          </div>
+        <% } else { %>
+          <div class="title-score-text">Esta película todavía no ha recibido valoraciones</div>
+        <% } %>
+      </div>
+      <div class="container second-index-container vertical score-container">
+        <h1 class="title-score">Dejar valoración</h1>
+        <div class="title-score-text">Deja aquí tu valoración sobre la película y comparte tu opinión con otros usuarios</div>
+        <form id="movie-score-form">
+          <div id="star-container">
+            <i data-value="1" class="fa-solid fa-star"></i>
+            <i data-value="2" class="fa-solid fa-star"></i>
+            <i data-value="3" class="fa-solid fa-star"></i>
+            <i data-value="4" class="fa-solid fa-star"></i>
+            <i data-value="5" class="fa-solid fa-star"></i>
+          </div>
+          <textarea id="movie-text-valoration" name="valoracion" cols="30" rows="10"></textarea>
+          <button class="submit-score" type="submit">Publicar</button>
+        </form>
       </div>
     </main>
     <%- include('footer.ejs') -%>

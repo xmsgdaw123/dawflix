@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateProfileForm = document.getElementById('update-profile-form')
   const inputCurrentPassword = document.getElementById('current-password')
   const inputUpdatedPassword = document.getElementById('updated-password')
+  const starContainer = document.getElementById('star-container')
+  const movieScoreForm = document.getElementById('movie-score-form')
+  const movieTextValoration = document.getElementById('movie-text-valoration')
+  const serieScoreForm = document.getElementById('serie-score-form')
+  const serieTextValoration = document.getElementById('serie-text-valoration')
 
   loginForm?.addEventListener('submit', async evt => {
     evt.preventDefault()
@@ -109,6 +114,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const res = await fetchAPI('/api/user/update-profile', 'POST', body)
     if (res.status === 'error') return errorNotification(res.message)
     console.log(res)
+    location.reload()
+  })
+
+  let stars = null
+  starContainer?.addEventListener('click', evt => {
+    const value = Number(evt.target.getAttribute('data-value'))
+    if (!value) return
+    stars = value
+
+    // quitar todas las estrellas
+    for (let i = 0; i < starContainer.children.length; i++) {
+      starContainer.children.item(i).classList.remove('star-selected')
+    }
+
+    // añadir las estrellas seleccionadas
+    for (let i = 0; i < stars; i++) {
+      starContainer.children.item(i).classList.add('star-selected')
+    }
+  })
+
+  movieScoreForm?.addEventListener('submit', async evt => {
+    evt.preventDefault()
+    const text = movieTextValoration.value
+    if (!stars) return errorNotification('Debes seleccionar tu valoración en las estrellas')
+    if (!text || text.length < 10) return errorNotification('El texto debe tener más de 10 carácteres')
+    const body = JSON.stringify({ text, stars })
+    const movieId = window.movie.id
+    const res = await fetchAPI(`/movies/${movieId}/send-score`, 'POST', body)
+    if (res.status === 'error') return errorNotification(res.message)
+    location.reload()
+  })
+
+  serieScoreForm?.addEventListener('submit', async evt => {
+    evt.preventDefault()
+    const text = serieTextValoration.value
+    if (!stars) return errorNotification('Debes seleccionar tu valoración en las estrellas')
+    if (!text || text.length < 10) return errorNotification('El texto debe tener más de 10 carácteres')
+    const body = JSON.stringify({ text, stars })
+    const serieId = window.serie.id
+    const res = await fetchAPI(`/series/${serieId}/send-score`, 'POST', body)
+    if (res.status === 'error') return errorNotification(res.message)
     location.reload()
   })
 })

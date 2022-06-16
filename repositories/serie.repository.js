@@ -57,6 +57,34 @@ export const getAllSeries = async () => {
   return data
 }
 
+export const saveScore = async (score, comment, user, serie) => {
+  const { error, data } = await makeQuery('INSERT INTO scores_series (score, comment, user, serie) VALUES (?, ?, ?, ?)', [score, comment, user, serie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]
+}
+
+export const getComedySeries = async () => {
+  const { error, data } = await makeQuery('SELECT * FROM series WHERE category = 3')
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
+export const getScores = async serie => {
+  const { error, data } = await makeQuery('SELECT scores_series.score, scores_series.comment, users.username FROM scores_series INNER JOIN users ON scores_series.user = users.id WHERE scores_series.serie = ?', [serie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
+export const getAverageScore = async serie => {
+  const { error, data } = await makeQuery(`SELECT AVG(score) as 'average' FROM scores_series WHERE serie = ?`, [serie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]?.average || 0
+}
+
 export default {
   getFeaturedSeries,
   getSerieById,
@@ -65,5 +93,9 @@ export default {
   getSavedSeries,
   removeSavedSerie,
   getSavedSeriesDetailed,
-  getAllSeries
+  getAllSeries,
+  getComedySeries,
+  saveScore,
+  getScores,
+  getAverageScore
 }

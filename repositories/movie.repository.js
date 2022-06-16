@@ -56,6 +56,34 @@ export const getAllMovies = async () => {
   return data
 }
 
+export const saveScore = async (score, comment, user, movie) => {
+  const { error, data } = await makeQuery('INSERT INTO scores_movies (score, comment, user, movie) VALUES (?, ?, ?, ?)', [score, comment, user, movie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]
+}
+
+export const getScores = async movie => {
+  const { error, data } = await makeQuery('SELECT scores_movies.score, scores_movies.comment, users.username FROM scores_movies INNER JOIN users ON scores_movies.user = users.id WHERE scores_movies.movie = ?', [movie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
+export const getAverageScore = async movie => {
+  const { error, data } = await makeQuery(`SELECT AVG(score) as 'average' FROM scores_movies WHERE movie = ?`, [movie])
+  if (error) return null
+  if (data.length === 0) return null
+  return data[0]?.average || 0
+}
+
+export const getActionMovies  = async () => {
+  const { error, data } = await makeQuery('SELECT * FROM movies WHERE category = 1 OR category = 2')
+  if (error) return null
+  if (data.length === 0) return null
+  return data
+}
+
 export default {
   getFeaturedMovies,
   getMovieById,
@@ -64,5 +92,9 @@ export default {
   getSavedMovies,
   removeSavedMovie,
   getSavedMoviesDetailed,
-  getAllMovies
+  getAllMovies,
+  saveScore,
+  getScores,
+  getAverageScore,
+  getActionMovies
 }

@@ -4,9 +4,14 @@ export const getMovieById = async (req, res) => {
   const movieId = Number(req.params.id)
   const savedMovies = await moviesRepository.getSavedMovies(req.session.user.id)
   const movie = await moviesRepository.getMovieById(movieId)
+  const scores = await moviesRepository.getScores(movieId)
+  const averageScore = await moviesRepository.getAverageScore(movieId)
+
   res.render('movie.ejs', {
     movie,
-    savedMovies
+    savedMovies,
+    scores,
+    averageScore
   })
 }
 
@@ -47,6 +52,31 @@ export const removeSavedMovieById = async (req, res) => {
   }
 
   await moviesRepository.removeSavedMovie(userId, movieId)
+
+  res.send({ status: 'success' })
+}
+
+export const renderMoviesPage = async (req, res) => {
+  const movies = await moviesRepository.getAllMovies()
+
+  res.render('movies.ejs', {
+    movies
+  })
+}
+
+export const sendScore = async (req, res) => {
+  const userId = req.session.user.id
+  const movieId = Number(req.params.id)
+
+  if (!req.body?.stars || !req.body.text) {
+    return res.status(400).send({
+      status: 'error',
+      message: 'Body incorrecto'
+    })
+  }
+
+  const { stars, text } = req.body
+  await moviesRepository.saveScore(stars, text, userId, movieId)
 
   res.send({ status: 'success' })
 }

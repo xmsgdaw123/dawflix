@@ -12,17 +12,13 @@
   <body>
     <%- include('header.ejs') -%>
     <main>
-      <div class="container main-home-container">
-        <h1 class="info-title">Todas las películas y series que desees, y mucho más</h1>
-        <h2 class="info-subtitle">Empieza ya a ver tus series favoritas o peliculas favoritas</h2>
-      </div>
-      <div class="container second-index-container vertical">
+      <div class="container home-container vertical">
         <div class="featured-container">
           <h2 class="featured-container-title">Películas más populares</h2>
           <div class="featured-wrapper">
             <% for (const movie of featuredMovies) {%>
               <div class="featured-card">
-                <a href="/movies/<%- movie.id %>">
+                <a class="featured-card-link" href="/movies/<%- movie.id %>">
                   <img class="featured-card-img" src="./cdn/movies/<%- movie.id %>/thumbnail.jpg" alt="<%- movie.title %>">
                   <div class="featured-card-title"><%- movie.title %></div>
                 </a>
@@ -34,6 +30,32 @@
           <h2 class="featured-container-title">Series más populares</h2>
           <div class="featured-wrapper">
             <% for (const serie of featuredSeries) {%>
+              <div class="featured-card">
+                <a href="/series/<%- serie.id %>">
+                  <img class="featured-card-img" src="./cdn/series/<%- serie.id %>/thumbnail.jpg" alt="<%- serie.title %>">
+                  <div class="featured-card-title"><%- serie.title %></div>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="featured-container">
+          <h2 class="featured-container-title">Películas de acción y ciencia ficción</h2>
+          <div class="featured-wrapper">
+            <% for (const movie of actionMovies) {%>
+              <div class="featured-card">
+                <a class="featured-card-link" href="/movies/<%- movie.id %>">
+                  <img class="featured-card-img" src="./cdn/movies/<%- movie.id %>/thumbnail.jpg" alt="<%- movie.title %>">
+                  <div class="featured-card-title"><%- movie.title %></div>
+                </a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="featured-container">
+          <h2 class="featured-container-title">Series de comedia</h2>
+          <div class="featured-wrapper">
+            <% for (const serie of comedySeries) {%>
               <div class="featured-card">
                 <a href="/series/<%- serie.id %>">
                   <img class="featured-card-img" src="./cdn/series/<%- serie.id %>/thumbnail.jpg" alt="<%- serie.title %>">

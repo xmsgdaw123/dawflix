@@ -65,7 +65,7 @@ header, .container, footer {
 }
 
 header {
-  z-index: 1;
+  z-index: 10;
 }
 
 .info-title {
@@ -88,7 +88,6 @@ header {
 
 .main-index-container,
 .main-home-container,
-.main-movie-container,
 .main-profile-container {
   margin-top: 300px;
   margin-bottom: 200px;
@@ -272,6 +271,18 @@ footer {
   margin-bottom: 200px;
 }
 
+.home-container {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.height-fit {
+}
+
+.scores-container {
+  margin-bottom: 80px;
+}
+
 .header-user-link {
   color: #afafaf;
   text-decoration: none;
@@ -295,7 +306,8 @@ footer {
 
 .featured-wrapper {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .featured-card {
@@ -311,6 +323,17 @@ footer {
   height: 100%;
   border-radius: 4px;
   object-fit: cover;
+  z-index: 1;
+}
+
+.featured-card-link::after {
+  box-shadow: inset 3px 3px 10px 0 #000000;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .featured-card-title {
@@ -320,6 +343,7 @@ footer {
   color: white;
   font-weight: 600;
   font-size: 19px;
+  z-index: 2;
 }
 
 .featured-container-title {
@@ -344,6 +368,8 @@ footer {
 .main-movie-container {
   gap: 0px;
   flex-direction: column;
+  justify-content: center;
+  height: 850px;
 }
 
 .movie-title {
@@ -363,6 +389,7 @@ footer {
 
 .category-wrapper {
   display: flex;
+  gap: 10px;
 }
 
 .category {
@@ -371,6 +398,15 @@ footer {
   font-size: 18px;
   border-radius: 4px;
   color: #8cbbf5;
+  margin-bottom: 5px;
+}
+
+.stars-tag {
+  background: rgb(255, 246, 116, .15);
+  padding: 5px 20px;
+  font-size: 18px;
+  border-radius: 4px;
+  color: #ffcf3d;
   margin-bottom: 5px;
 }
 
@@ -461,4 +497,81 @@ footer {
 .admin-btn {
   cursor: pointer;
   margin-right: 10px; 
+}
+
+.title-score {
+  color: #fefefe;
+}
+
+textarea {
+  background: #191c2c;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  color: #cbcbcb;
+}
+
+.score-container {
+  gap: 0px!important;
+  margin-top: 80px;
+}
+
+.title-score-text {
+  color: #9d9d9d;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#star-container i {
+  color: #252a40;
+  cursor: pointer;
+}
+
+.star-selected {
+  color: #d3b133!important;
+}
+
+.submit-score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: #f1f1f1;
+  background: rgb(77 91 255);
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  padding: 5px 0px;
+  border-radius: 4px;
+}
+
+#movie-text-valoration,
+#serie-text-valoration {
+  margin-bottom: 10px;
+  width: 750px;
+}
+
+.scores-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #fff;
+}
+
+.score-comment {
+  color: #a2a2a2;
+}
+
+.score-card:not(:last-child) {
+  border-bottom: 1px solid #1f2334;
+  padding-bottom: 20px;
 }

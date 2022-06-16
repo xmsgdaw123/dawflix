@@ -39,9 +39,13 @@ app.engine('html', renderFile)
 app.get('/', authorizedMiddleware, async (req, res) => {
   const featuredMovies = await moviesRepository.getFeaturedMovies()
   const featuredSeries = await seriesRepository.getFeaturedSeries()
+  const actionMovies = await moviesRepository.getActionMovies()
+  const comedySeries = await seriesRepository.getComedySeries()
   res.render('home.ejs', {
     featuredMovies,
-    featuredSeries
+    featuredSeries,
+    actionMovies,
+    comedySeries
   })
 })
 
@@ -57,7 +61,7 @@ app.get('/saved', authorizedMiddleware, async (req, res) => {
 app.get('/admin', adminMiddleware, async (req, res) => {
   const movies = await moviesRepository.getAllMovies()
   const series = await seriesRepository.getAllSeries()
-  console.log({movies, series})
+
   res.render('admin.ejs', {
     movies,
     series,
